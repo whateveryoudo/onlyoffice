@@ -1,0 +1,16 @@
+version: '3'
+services:
+  onlyoffice-document-server:
+    image: onlyoffice/documentserver:latest
+    container_name: onlyoffice
+    ports:
+      - "8080:80"
+    volumes:
+      - ./data:/var/www/onlyoffice/Data
+      - ./logs:/var/log/onlyoffice
+      - ./fonts:/usr/share/fonts/custom:ro
+    environment:
+      - JWT_ENABLED=true
+      - JWT_SECRET=e39e75885d7f3688205de19c9ac041183c96624d8969dbf94d83e9da4f30feb1  # 🔐 必须改！
+    restart: always
+    privileged: true
